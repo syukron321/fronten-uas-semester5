@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import AdminLayout from '../../../components/admin/AdminLayout';
-import Produk from '../../../components/admin/mahasiswa-gql/Produk'
+import Produk from '../../../components/admin/mahasiswa-gql/Produks'
 
 function dataproduk({ produks }) {
 

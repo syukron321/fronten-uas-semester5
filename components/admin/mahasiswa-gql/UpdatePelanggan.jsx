@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { ApolloClient, gql, InMemoryCache,  } from '@apollo/client';
 
-const UpdateMahasiswa = () => {
+const UpdatePelanggan = () => {
     const [_kodepelanggan, setKodepelanggan] = useState('');
     const [_nama, setNama] = useState('');
     const [_nomerhp, setNomerhp] = useState('');
@@ -67,7 +67,7 @@ const UpdateMahasiswa = () => {
                   }`
             })
             alert("Update data sukses")
-            router.push('/admin/mahasiswa-gql/datamahasiswa')
+            router.push('/admin/admin/datapelanggan')
             clearInput()
         } catch (e) {
             // throw Error(e.message)
@@ -136,4 +136,4 @@ const UpdateMahasiswa = () => {
     );
 }
 
-export default UpdateMahasiswa;
+export default UpdatePelanggan;

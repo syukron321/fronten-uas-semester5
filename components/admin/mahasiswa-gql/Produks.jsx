@@ -9,7 +9,7 @@ const DataProduk = ({ data }) => {
         uri: 'http://localhost:1337/graphql',
         cache: new InMemoryCache()
     })
-    async function hapusProduct(id, kdRst) {
+    async function hapusProduct(id, kodeproduk) {
         // e.preventDefault()
         try {
             await client.mutate({
@@ -27,7 +27,7 @@ const DataProduk = ({ data }) => {
         } catch (error) {
             console.log({ message: error.message });
         }
-        router.push('/admin/card_produck')
+        router.push('/admin/admin/dataproduk')
     }
     return (
         <>
@@ -41,9 +41,9 @@ const DataProduk = ({ data }) => {
                                     <div className="e-panel card">
                                         <div className="card-body">
                                             <div className="d-flex bd-highlight">
-                                                <div className="p-2 flex-grow-1 bd-highlight">Admin</div>
+                                                <h1 className="p-2 flex-grow-1 bd-highlight">Data Produk</h1>
                                                 <div className="p-2 bd-highlight">
-                                                    <Link href="/admin/mahasiswa-gql/createmahasiswa">
+                                                    <Link href="/admin/admin/createmahasiswa">
                                                         <button className='btn btn-primary'>Tambah Data</button>
                                                     </Link>
                                                 </div>
@@ -71,9 +71,7 @@ const DataProduk = ({ data }) => {
                                                                     <td className="text-nowrap align-middle">{produks.attributes.deskripsi}</td>
                                                                     <td className="text-center align-middle">
                                                                         <div className="align-top">
-                                                                            <Link legacyBehavior
-                                                                                href={`/admin/updateproduct/?id=${produks.id}&kodeproduk=${produks.attributes.kodeproduk}&nama=${produks.attributes.nama}&harga=${produks.attributes.harga}&deskripsi=${produks.attributes.deskripsi}`}
-                                                                            ><button className='btn btn-primary mr-2'>Edit</button></Link>
+                                                                            
 
                                                                             <button className='btn btn-danger' value={produks.attributes.kodeproduk} onClick={(e) => hapusProduct(produks.id, produks.attributes.kodeproduk)} >Hapus</button>
 

@@ -34,23 +34,31 @@ const SideBar = ({ children }) => {
                                             </Link>
                                         </li> */}
                                          <li className="w-100">
-                                            <Link href={"/admin/mahasiswa/datamahasiswa"}>
+                                            <Link href={"/admin/admin/datapelanggan"}>
                                                         
                                                 <a className="nav-link px-0"> 
-                                                    <span className="d-none d-sm-inline">Data Mahasiswa</span> 
+                                                    <span className="d-none d-sm-inline">Data Pelanggan</span> 
+                                                </a>
+                                            </Link>
+                                        </li>
+                                         <li className="w-100">
+                                            <Link href={"/admin/admin/dataproduk"}>
+                                                        
+                                                <a className="nav-link px-0"> 
+                                                    <span className="d-none d-sm-inline">Data Produk</span> 
                                                 </a>
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href={"/admin/mahasiswa/createmahasiswa"}>
-                                                <a className="nav-link px-0"> <span className="d-none d-sm-inline">Tambah Mahasiswa</span></a>
+                                            <Link href={"/admin/admin/createproduk"}>
+                                                <a className="nav-link px-0"> <span className="d-none d-sm-inline">Tambah Produk</span></a>
                                             </Link>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <Link href={"/admin/matakuliah/creatematakuliah"}>
                                                 <a className="nav-link px-0"> <span className="d-none d-sm-inline">Tambah Matakuliah</span></a>
                                             </Link>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </li>
                                 <li>

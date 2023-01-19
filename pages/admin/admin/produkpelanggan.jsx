@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/router';
 import ProdukPelanggan from '../../../components/admin/mahasiswa-gql/ProdukPelanggan'
-import Produk from '../../../components/admin/mahasiswa-gql/Produk'
+import Produk from '../../../components/admin/mahasiswa-gql/DataProduk'
 import { ApolloClient, gql, InMemoryCache, } from '@apollo/client';
 import Link from 'next/link';
 
