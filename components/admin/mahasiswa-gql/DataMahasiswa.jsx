@@ -20,7 +20,7 @@ const DataMahasiswa = ({data}) => {
         try {
 
             const response = await axios.delete(
-                `http://localhost:1337/api/agens/${kodepelanggan}`
+                `http://localhost:1337/api/pelanggans/${kodepelanggan}`
               );
              
               if (response.data.message) {
@@ -40,7 +40,7 @@ const DataMahasiswa = ({data}) => {
             await client.mutate({
                 mutation: gql`
                 mutation{
-                    deleteAgen(id:${id}){
+                    deletePelanggan(id:${id}){
                         data{
                             id
                         }
@@ -53,7 +53,7 @@ const DataMahasiswa = ({data}) => {
             console.log({message : error.message});
 
         }
-        router.push('admin/mahasiswa-gql/datamahasiswa')
+        router.push('/admin/mahasiswa-gql/datamahasiswa')
     }
     
     return ( 

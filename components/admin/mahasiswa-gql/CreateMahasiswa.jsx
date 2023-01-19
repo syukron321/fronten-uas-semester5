@@ -32,7 +32,7 @@ const CreateMahasiswa = () => {
             await client.mutate({
                 mutation: gql`
             mutation{
-                createAgen(data:{
+                createPelanggan(data:{
                   kodepelanggan:"${kodepelanggan}",
                   nama:"${nama}",
                   nomor_hp:${nomerhp},

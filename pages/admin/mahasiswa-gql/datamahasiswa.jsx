@@ -4,13 +4,13 @@ import AdminLayout from '../../../components/admin/AdminLayout';
 import ByKodePelanggan from '../../../components/admin/mahasiswa-gql/MahasiswaByNim';
 import {ApolloClient, InMemoryCache, gql} from '@apollo/client';
 
-function datamahasiswa({agens}){
+function datamahasiswa({pelanggans}){
     return(
         <div>
             <AdminLayout>
                 <div className="container">
                     <ByKodePelanggan/>
-                    <DataMahasiswa data={agens.data} />
+                    <DataMahasiswa data={pelanggans.data} />
                 </div>
             </AdminLayout>
         </div>
@@ -27,7 +27,7 @@ export async function getServerSideProps({query}){
     const{data} = await client.query({
         query:gql`
         query getAllPelanggan{
-            agens{
+            pelanggans{
                 data{
                   id
                   attributes{
@@ -41,7 +41,7 @@ export async function getServerSideProps({query}){
         }
         `
     })
-    return {props:{ agens : data.agens}}
+    return {props:{ pelanggans : data.pelanggans}}
 }
 
 export default datamahasiswa;

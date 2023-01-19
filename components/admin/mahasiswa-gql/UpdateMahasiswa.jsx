@@ -47,7 +47,7 @@ const UpdateMahasiswa = () => {
             await client.mutate({
                 mutation:gql `
                 mutation{
-                    updateAgen(id:${id},data:{
+                    updatePelanggan(id:${id},data:{
                       kodepelanggan:"${_kodepelanggan}",
                       nama: "${_nama}",
                       nomerhp:${_nomerhp},
