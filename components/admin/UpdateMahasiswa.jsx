@@ -1,76 +1,68 @@
-import React from "react";
+//@ts-check
+
 import { useEffect, useState } from "react";
-import Router, { useRouter } from "next/router";
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import Router, { useRouter } from 'next/router';
+import axios from "axios";
 
-const client = new ApolloClient({
-    uri: 'http://localhost:1337/graphql',
-    cache: new InMemoryCache()
-})
 const UpdateMahasiswa = () => {
-    //deklarasi state
-    const [_nim, setNim] = useState("");
-    const [_nama, setNama] = useState("");
-    const [_angkatan, setAngkatan] = useState("");
-    const [_prodi, setProdi] = useState("");
+    //Deklarasi state
+    const [_nim, setNim] = useState('');
+    const [_nama, setNama] = useState('');
+    const [_angkatan, setAngkatan] = useState('');
+    const [_prodi, setProdi] = useState('');
+    
 
-    //mengambil data yang dikirim melalui router
-    const router = useRouter()
-    const {id, nim, nama, angkatan, prodi } = router.query;
+    // mengambil data yang dikrim melalui router
+    const router = useRouter();
+    const { nim, nama, angkatan, prodi } = router.query;
 
     useEffect(() => {
         if (typeof nim == 'string') {
             setNim(nim);
         }
         if (typeof nama == 'string') {
-            setNama(nama);
+            setNama(nama)
         }
         if (typeof angkatan == 'string') {
-            setAngkatan(angkatan);
+            setAngkatan(angkatan)
         }
         if (typeof prodi == 'string') {
-            setProdi(prodi);
+            setProdi(prodi)
         }
-    }, [nim, nama, angkatan, prodi]);
+    }, [nim, nama, angkatan, prodi])
+
 
     const submitHandler = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
+        // setSubmitting(true)
         try {
-            await client.mutate({
-                mutation:gql`
-                mutation{
-                    updateMahasiswa(id:${id},
-                        data:{
-                            nama:"${_nama}",
-                            angkatan:"${_angkatan}",
-                            prodi:"${_prodi}",   
-                        })
-                        {
-                            data{
-                                id
-                            }
-                        }
-                }`
-            })
+            axios
+                .put(`http://localhost:5000/mahasiswa/${_nim}`, {
+                    nim: _nim,
+                    nama: _nama,
+                    angkatan: _angkatan,
+                    prodi: _prodi,
+                })
+                .then(response => {
+                    console.log(response);
+                });
 
-            alert("Update Data Sukses");
-            Router.push('/admin/mahasiswa-gql/datamahasiswa');
+            alert("Update Data Sukses")
+            Router.push('/admin/datamahasiswa')
         } catch (e) {
+            //throw Error(e.message)
             console.log({ message: e.message });
         }
-    };
-
+    }
 
     return (
         <div>
             <div className="container mt-4">
                 <form className="w-50 mx-auto" onSubmit={submitHandler}>
-                    <h1 className="w-75 text-center">Edit Data Mahasiswa</h1>
-
-
+                    <h1 className="w-75 font-bold text-center mb-3">
+                        Edit Data Mahasiswa
+                    </h1>
                     <div className="w-75">
-
-
                         <div className="form-floating">
                             <input
                                 className="form-control mb-2"
@@ -79,7 +71,6 @@ const UpdateMahasiswa = () => {
                                 placeholder="NIM"
                                 value={_nim}
                                 onChange={(e) => setNim(e.target.value)}
-                                
                             />
                             <label htmlFor="nim">NIM</label>
                         </div>
@@ -118,19 +109,21 @@ const UpdateMahasiswa = () => {
                             />
                             <label htmlFor="prodi">Program Studi</label>
                         </div>
-                    </div>
-                    <div className="w-75 d-flex flex-row-reverse">
-                        <button
-                            className="btn btn-primary"
-                            type="submit"
-                        >
-                            Update
-                        </button>
+
+                        <div className="d-flex flex-row-reverse">
+                            <button
+                                className="btn btn-primary"
+                                type="submit"
+                            >
+                                Update
+                            </button>
+                            
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
-    )
-
+    );
 }
+
 export default UpdateMahasiswa;

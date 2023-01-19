@@ -6,7 +6,7 @@ const updatemahasiswa = () => {
     return ( 
         <div>
             <AdminLayout>
-                <UpdateMahasiswa />
+                <UpdateMahasiswa/>   
             </AdminLayout>
         </div>
      );

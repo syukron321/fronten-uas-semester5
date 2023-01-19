@@ -1,5 +1,4 @@
 //@ts-check
-'use strict'
 import React, { useEffect, useState } from 'react';
 
 function Ipk({data}) {
@@ -22,9 +21,9 @@ function Ipk({data}) {
     let totalSks = 0;
     let totalNilai = 0
     data.map(dt=>{
-        totalSks += dt.sks
-        const nilai = gradeToNil[dt.nilai]
-        const nxk = nilai * dt.sks
+        totalSks += dt.attributes.matakuliah.data[0].attributes.sks
+        const nilai = gradeToNil[dt.attributes.nilai]
+        const nxk = nilai * dt.attributes.matakuliah.data[0].attributes.sks
         totalNilai += nxk
     })
     const _ipk = totalNilai / totalSks

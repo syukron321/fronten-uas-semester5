@@ -1,6 +1,6 @@
 //@ts-check
 import React from 'react';
-import DataPelanggan from '../../components/admin/DataPelanggan';
+import DataMahasiswa from '../../components/admin/DataMahasiswa';
 import AdminLayout from '../../components/admin/AdminLayout';
 import MahasiswaByNim from '../../components/admin/mahasiswa/MahasiswaByNim';
 
@@ -15,7 +15,7 @@ function datamahasiswa({ data }) {
             <AdminLayout>
                 <div className="container">
                     <MahasiswaByNim />
-                    <DataPelanggan data={hasil} />
+                    <DataMahasiswa data={hasil} />
                 </div>
             </AdminLayout>
         </div>

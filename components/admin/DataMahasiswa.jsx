@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useState } from 'react'
 
 
-const DataPelanggan = ({data}) => {
+const DataMahasiswa = ({data}) => {
    /*  const [message, setMessage] = useState(false)
     const router = useRouter()
     
@@ -27,7 +27,7 @@ const DataPelanggan = ({data}) => {
             console.log({message : error.message});
         }
 
-        router.push('/admin/DataPelanggan')
+        router.push('/admin/datamahasiswa')
       } */
     
     return ( 
@@ -36,41 +36,41 @@ const DataPelanggan = ({data}) => {
             <table className = "table">
                 <thead>
                     <tr>
-                        <th>Kode Pelanggan</th>
+                        <th>NIM</th>
                         <th>Nama</th>
-                        <th>ALamat</th>
-                        <th>Nomor Hp</th>
+                        <th>Angkatan</th>
+                        <th>Prodi</th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                { data.map((pelanggan, idx) => (
+                { data.map((mhs, idx) => (
                     <tr key ={idx}>
                         
                             <td>
-                                {pelanggan.kodepelanggan}
+                                {mhs.nim}
                             </td>
                             <td>
-                                 {pelanggan.nama}
+                                 {mhs.nama}
                             </td>
                             <td>
-                                {pelanggan.alamat}
+                                {mhs.angkatan}
                             </td>
                             <td>
-                                 {pelanggan.nomerhp}
+                                 {mhs.prodi}
                             </td>
                             <td>
                                 <div className="d-flex justify-content-between">
-                                    {/* <Link href={`/admin/updatemahasiswa?nim=${pelanggan.nim}
-                                        &nama=${pelanggan.nama}&angkatan=${pelanggan.angkatan}
-                                        &prodi=${pelanggan.prodi}`}
+                                    {/* <Link href={`/admin/updatemahasiswa?nim=${mhs.nim}
+                                        &nama=${mhs.nama}&angkatan=${mhs.angkatan}
+                                        &prodi=${mhs.prodi}`}
                                     >
                                         <a>Edit</a>
                                     </Link> */}
 
                                     <Link href={
                                        { pathname : '/admin/updatemahasiswa', 
-                                         query : {nim : pelanggan.nim, nama : pelanggan.nama, angkatan : pelanggan.angkatan, prodi : pelanggan.prodi}
+                                         query : {nim : mhs.nim, nama : mhs.nama, angkatan : mhs.angkatan, prodi : mhs.prodi}
                                        }
                                         }
                                     >
@@ -79,7 +79,7 @@ const DataPelanggan = ({data}) => {
                                     
                                     <button 
                                         className = "btn btn-danger btn-sm"
-                                        value = {pelanggan.nim}
+                                        value = {mhs.nim}
                                         onClick={(e)=>hapusMahasiswa(e.target.value)}
                                     >
                                             Hapus
@@ -95,4 +95,4 @@ const DataPelanggan = ({data}) => {
      );
 }
 
-export default DataPelanggan;
+export default DataMahasiswa;

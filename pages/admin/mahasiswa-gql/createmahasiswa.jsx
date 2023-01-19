@@ -1,12 +1,12 @@
 
 import React from 'react';
 import AdminLayout from '../../../components/admin/AdminLayout';
-import CreateMahasiswa from '../../../components/admin/mahasiswa/CreateMahasiswa';
+import CreateMahasiswa from '../../../components/admin/mahasiswa-gql/CreateMahasiswa';
 
 const createmahasiswa = () => {
     return (
         <AdminLayout>
-            <CreateMahasiswa />
+            <CreateMahasiswa/>
         </AdminLayout>
     );
 };

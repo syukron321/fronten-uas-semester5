@@ -1,83 +1,45 @@
-import React from "react";
-import { useState } from "react";
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
-
-const client = new ApolloClient({
-    uri:'http://localhost:1337/graphql',
-    cache: new InMemoryCache()
-})
+import { useState } from "react"
+import axios from 'axios'
 
 const CreateMahasiswa = () => {
-        const [nim, setNim] = useState('');
-        const [nama, setNama] = useState('');
-        const [angkatan, setAngkatan] = useState('');
-        const [prodi, setProdi] = useState('');
+    const [nim, setNim] = useState('');
+    const [nama, setNama] = useState('');
+    const [angkatan, setAngkatan] = useState('');
+    const [prodi, setProdi] = useState('');
 
-        const getNimAndProdi = ()=>{
-            const objProdi = {'11' : 'Teknik Informatika', '31' : 'Manajemen Informatika'}
-            const kdProdi = nim.substring(0,2)
-            const kdAngkatan = nim.substring(2,4)
-            
-            const prodi = objProdi[kdProdi]
-            const angkatan = '20' + kdAngkatan
-            
-            setProdi(prodi)
-            setAngkatan(angkatan)
-            
-            console.log(prodi + ',' + kdAngkatan)
-        }
-
-        async function submitHandler(e) {
-            e.preventDefault()
-            try {
-                await client.mutate({
-                    mutation:gql`
-                    mutation{
-                        createMahasiswa(data:{
-                            nim:"${nim}",
-                            nama:"${nama}",
-                            angkatan:"${angkatan}",
-                            prodi:"${prodi}",
-
-                        })
-                        {
-                            data{
-                                id
-                                attributes{
-                                    nim
-                                    nama
-                                    angkatan
-                                    prodi
-                                }
-                            }
-                        }
-                    }`
+    async function submitHandler(e) {
+        e.preventDefault()
+        try {
+            axios
+                .post("http://localhost:5000/mahasiswa", {
+                    nim,
+                    nama,
+                    angkatan,
+                    prodi,
                 })
-    
-                alert("Penambahan Data Sukses")
-                clearInput()
-            } catch (e) {
-                throw Error(e.message)
-            }
+                .then(response => {
+                    console.log(response);
+                });
+            alert("Penambahan Data Sukses")
+            clearInput()
+        } catch (e) {
+            throw Error(e.message)
         }
+    }
 
-        const clearInput = () => {
-            setNim('')
-            setNama('')
-            setAngkatan('')
-            setProdi('')
-        }
+    const clearInput = () => {
+        setNim('')
+        setNama('')
+        setAngkatan('')
+        setProdi('')
+    }
 
     return (
         <div>
             <div className="container mt-4">
                 <form className="w-50 mx-auto" onSubmit={submitHandler}>
                     <h1 className="w-75 text-center">Input Mahasiswa</h1>
-                    
-
                     <div className="w-75">
-
-
                         <div className="form-floating">
                             <input
                                 className="form-control mb-2"
@@ -86,7 +48,6 @@ const CreateMahasiswa = () => {
                                 placeholder="NIM"
                                 value={nim}
                                 onChange={(e) => setNim(e.target.value)}
-                                onBlur={getNimAndProdi}
                             />
                             <label htmlFor="nim">NIM</label>
                         </div>
@@ -100,7 +61,7 @@ const CreateMahasiswa = () => {
                                 value={nama}
                                 onChange={(e) => setNama(e.target.value)}
                             />
-                            <label htmlFor="nama">Nama</label>
+                            <label htmlFor="nim">Nama</label>
                         </div>
 
                         <div className="form-floating">
@@ -112,7 +73,7 @@ const CreateMahasiswa = () => {
                                 value={angkatan}
                                 onChange={(e) => setAngkatan(e.target.value)}
                             />
-                            <label htmlFor="angkatan">Angkatan</label>
+                            <label htmlFor="nim">Angkatan</label>
                         </div>
                         <div className="form-floating">
                             <input
@@ -123,7 +84,7 @@ const CreateMahasiswa = () => {
                                 value={prodi}
                                 onChange={(e) => setProdi(e.target.value)}
                             />
-                            <label htmlFor="prodi">Program Studi</label>
+                            <label htmlFor="nim">Program Studi</label>
                         </div>
                     </div>
                     <div className="w-75 d-flex flex-row-reverse">
@@ -137,6 +98,7 @@ const CreateMahasiswa = () => {
                 </form>
             </div>
         </div>
-    )
+    );
 }
+
 export default CreateMahasiswa;

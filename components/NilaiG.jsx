@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const Nilai = ({data}) => {
-    {Array.isArray(data) ? data = data : data = data.nilai}
+    // {Array.isArray(data) ? data = data : data = data.nilai}
     return (
         <div>
             <table className = "table table-secondary table-hover mt-2">
@@ -22,22 +22,22 @@ const Nilai = ({data}) => {
                     <tr key ={idx}>
                         
                             <td>
-                                {nilai.kdMk}
+                                {nilai.attributes.matakuliah.data[0].attributes.kdMk}
                             </td>
                             <td>
-                                 {nilai.matakuliah}
+                                 {nilai.attributes.matakuliah.data[0].attributes.matakuliah}
                             </td>
                             <td>
-                                {nilai.dosen}
+                                {nilai.attributes.dosen}
                             </td>
                             <td>
-                                 {nilai.semester}
+                                 {nilai.attributes.semester}
                             </td>
                             <td>
-                                 {nilai.sks}
+                                 {nilai.attributes.matakuliah.data[0].attributes.sks}
                             </td>
                             <td>
-                                 {nilai.nilai}
+                                 {nilai.attributes.nilai}
                             </td>
                     </tr>
                     ))
